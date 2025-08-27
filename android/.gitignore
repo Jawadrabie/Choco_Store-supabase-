@@ -1,0 +1,37 @@
+# Flutter/Dart
+.dart_tool/
+.packages
+.melos_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.fvm/
+build/
+pubspec.lock
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# System
+.DS_Store
+Thumbs.db
+
+# Android
+gradle-wrapper.jar
+/.gradle
+/captures/
+/gradlew
+/gradlew.bat
+/local.properties
+GeneratedPluginRegistrant.java
+
+# Keystore files
+key.properties
+**/*.keystore
+**/*.jks
+
+# iOS/macOS
+ios/Pods/
+macos/Pods/
+**/DerivedData/

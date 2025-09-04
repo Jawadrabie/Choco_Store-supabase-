@@ -37,14 +37,14 @@ class CustomBottomNavBar extends StatelessWidget {
                   onTap: () => onTap(0),
                 ),
                 _NavItem(
-                  icon: Icons.dashboard_rounded,
-                  label: 'البحث',
+                  icon: Icons.car_crash_outlined,
+                  label: 'التوصيل',
                   active: currentIndex == 1,
                   onTap: () => onTap(1),
                 ),
                 _NavItem(
-                  icon: Icons.storefront_rounded,
-                  label: 'السلة',
+                  icon: Icons.factory,
+                  label: 'التواصي',
                   active: currentIndex == 2,
                   onTap: () => onTap(2),
                 ),

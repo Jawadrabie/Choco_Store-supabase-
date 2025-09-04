@@ -210,6 +210,8 @@ class _HomePageState extends State<HomePage> {
       CustomChocolateOrderPage(),
       //AllProductPage(),
      // CartInfoPage(),
+
+
       CardFavWidget(),
     ];
     return SafeArea(

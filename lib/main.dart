@@ -1,37 +1,71 @@
-import 'package:chocolate_store/screen/all_product_screen/all_product_widget/custom_text_field/cubit/text_field_cubit.dart';
-import 'package:chocolate_store/screen/cart_info_page/cart_counter_bloc/cart_counter_bloc.dart';
-import 'package:chocolate_store/screen/cart_info_page/cart_cubit/cart_cubit.dart';
-import 'package:chocolate_store/screen/home_page_screen/home_page.dart';
-import 'package:chocolate_store/screen/home_page_screen/home_page_model/prod_class.dart';
-import 'package:chocolate_store/screen/sign_in_up_screen/sign_in_up_page.dart';
-import 'package:chocolate_store/screen/splash_screen/first_splash_screen.dart';
+// lib/main.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'supabase_config.dart';
+import 'repositories/auth_repository.dart';
+import 'repositories/product_repository.dart';
+import 'repositories/category_repository.dart';
+import 'services/local_cache_service.dart';
+import 'cubits/auth/auth_cubit.dart';
+import 'cubits/product/product_cubit.dart';
+import 'cubits/category/category_cubit.dart';
+import 'screen/sign_in_up_screen/sign_in_up_page.dart';
+import 'screen/home_page_screen/home_page.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SupabaseConfig.init();
 
-  runApp(const ChocolateStore());
+  // قم بالتحقق من وجود جلسة مستخدم حالية
+  final session = Supabase.instance.client.auth.currentSession;
+  final initialLoggedIn = session != null;
+
+  runApp(ChocolateStore(initialLoggedIn: initialLoggedIn));
 }
 
 class ChocolateStore extends StatelessWidget {
-  const ChocolateStore({super.key});
+  final bool initialLoggedIn;
+  const ChocolateStore({super.key, required this.initialLoggedIn});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
+    return MultiRepositoryProvider(
       providers: [
-        BlocProvider(create: (_) => CartCubit()),
-        BlocProvider(create: (BuildContext context) =>CartCounterBloc()),
-        BlocProvider(create: (BuildContext context) => GetSearchProdCubit(),
-        )
+        RepositoryProvider<AuthRepository>(create: (_) => AuthRepository()),
+        RepositoryProvider<ProductRepository>(create: (_) => ProductRepository()),
+        RepositoryProvider<CategoryRepository>(create: (_) => CategoryRepository()),
+        RepositoryProvider<LocalCacheService>(create: (_) => LocalCacheService()),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-         home:SplashScreen(),
-
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<AuthCubit>(
+            create: (ctx) => AuthCubit(ctx.read<AuthRepository>()),
+          ),
+          BlocProvider<ProductCubit>(
+            create: (ctx) => ProductCubit(
+              ctx.read<ProductRepository>(),
+              ctx.read<LocalCacheService>(),
+            )
+              ..loadFromCache()
+              ..loadFromNetwork(),
+          ),
+          BlocProvider<CategoryCubit>(
+            create: (ctx) => CategoryCubit(
+              ctx.read<CategoryRepository>(),
+              ctx.read<LocalCacheService>(),
+            )
+              ..loadFromCache()
+              ..loadFromNetwork(),
+          ),
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'شوكولا مزاج',
+          theme: ThemeData(primarySwatch: Colors.brown),
+          home: initialLoggedIn ? HomePage() : const SignInPage(),
+        ),
       ),
-
     );
   }
 }

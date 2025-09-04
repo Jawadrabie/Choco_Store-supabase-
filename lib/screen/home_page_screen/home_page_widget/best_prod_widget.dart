@@ -1,8 +1,7 @@
-import 'package:chocolate_store/screen/home_page_screen/home_page_model/prod_class.dart';
 import 'package:flutter/material.dart';
 
 import '../../../shared_widget/custom_child_container.dart';
-import '../../product_info_screen/product_info_page.dart';
+import '../../../presentation/screens/trending_products_screen.dart';
 
 class BestProdWidget extends StatelessWidget {
   const BestProdWidget({super.key});
@@ -48,17 +47,8 @@ class BestProdWidget extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (BuildContext context) {
-                                return ProductInfoPage(
-                                  prodInfo: ProdInfo(
-                                      image: Image.asset(
-                                          'asset/image/main_image.jpg'),
-                                      nameProd: 'منتج جديد',
-                                      description: 'شوكولا بيضاء',
-                                      price: '1200',
-                                      prodId: 123),
-                                );
-                              }),
+                                builder: (BuildContext context) =>  TrendingProductsScreen(),
+                              )
                             );
                           },
                           icon: const Icon(

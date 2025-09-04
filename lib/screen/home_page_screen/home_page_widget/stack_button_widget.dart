@@ -12,25 +12,28 @@ class StackButtonWidget extends StatelessWidget {
       width: 170,
       height: 190,
       child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-      ItemWidget(prodInfo: ProdInfo(
-      image: Image.asset(' '),
-      nameProd: 'منتج جديد',
-      description: 'شوكولا بيضاء',
-      price: '1200',
-      prodId: 123),),
-
-      Positioned(
-      bottom: 16,
-      right: -8,
-      child:
-      CartButton(prodInfo: ProdInfo(prodId: 1, nameProd: 'شوكولا بيضاء', description: 'حليب', price: '1200 \$'),),
-      )
-      ,
-
-      ]
-      ,
+        clipBehavior: Clip.none,
+        children: [
+          ItemWidget(
+            prodInfo: ProdInfo(
+                image: null,
+                nameProd: 'منتج جديد',
+                description: 'شوكولا بيضاء',
+                price: '1200',
+                prodId: 123),
+          ),
+          Positioned(
+            bottom: 16,
+            right: -8,
+            child: CartButton(
+              prodInfo: ProdInfo(
+                  prodId: 1,
+                  nameProd: 'شوكولا بيضاء',
+                  description: 'حليب',
+                  price: '1200 \$'),
+            ),
+          ),
+        ],
       ),
     );
   }

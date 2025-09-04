@@ -25,9 +25,17 @@ class ProductInfoPage extends StatelessWidget {
           BackButton(color: Color(0xFF000000),),
           Center(
             child: CustomChildContainer(
-                child: Image.asset(
-                  'asset/image/main_image.jpg',
-                  fit: BoxFit.fill,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: prodInfo.image != null
+                      ? FittedBox(
+                          fit: BoxFit.cover,
+                          child: prodInfo.image,
+                        )
+                      : Image.asset(
+                          'asset/image/main_image.jpg',
+                          fit: BoxFit.cover,
+                        ),
                 ),
                 width: 350,
                 height: 400),

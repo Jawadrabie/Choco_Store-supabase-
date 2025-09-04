@@ -28,36 +28,52 @@ class ItemWidget extends StatelessWidget {
               bottomLeft: Radius.circular(20),
               bottomRight: Radius.circular(80)),
           width: 180,
-          height: 170,
+          height: 150,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(6.0),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(
-                  child: Image.asset(
-                    'asset/image/main_image.jpg',
-                    width: 100,
-                    height: 100,
+                  child: SizedBox(
+                    width: 90,
+                    height: 70,
+                    child: prodInfo.image != null
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: FittedBox(
+                              fit: BoxFit.cover,
+                              child: prodInfo.image,
+                            ),
+                          )
+                        : Image.asset(
+                            'asset/image/main_image.jpg',
+                            fit: BoxFit.cover,
+                          ),
                   ),
                 ),
                 Center(
                   child: Text(
                     '${prodInfo.nameProd}',
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 15),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 Text(
                   '${prodInfo.description}',
                   textAlign: TextAlign.left,
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 11,
                     fontWeight: FontWeight.w400,
                   ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 Text(
                   '${prodInfo.price}',
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                 ),
               ],
             ),

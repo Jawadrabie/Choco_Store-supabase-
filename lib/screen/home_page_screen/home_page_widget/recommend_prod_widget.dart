@@ -1,4 +1,4 @@
-import 'package:chocolate_store/screen/all_product_screen/all_product.dart';
+import 'package:chocolate_store/presentation/screens/featured_products_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,25 +10,31 @@ class RecommendProd extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
-        children: [ TextButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (BuildContext context) {
-                return  AllProductPage();
-              }),
-            );
-          },
-          child: Text(
-            'عرض الجميع',
-            style: TextStyle(decoration: TextDecoration.underline, color: Colors.white, fontSize: 15, decorationColor: Colors.white),
+        children: [
+          const Text(
+            'الأكثر مبيعًا',
+            style: TextStyle(
+              decoration: TextDecoration.underline,
+              color: Colors.white,
+              fontSize: 15,
+              decorationColor: Colors.white,
+            ),
           ),
-        ),
-          SizedBox(width: 118.8,),
-         Text('هل تريد أصنافاً أكثر؟',style: TextStyle( color: Colors.white, fontSize: 15),
+          const Spacer(),
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const FeaturedProductsScreen(),
+                ),
+              );
+            },
+            child: const Text(
+              'عرض الكل',
+              style: TextStyle(color: Colors.white, fontSize: 15),
+            ),
           ),
-
-
         ],
       ),
     );

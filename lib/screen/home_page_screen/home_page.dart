@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../presentation/screens/delevery_screen.dart';
+import '../../presentation/screens/order_screen.dart';
 import '../../shared_widget/custom_main_container.dart';
 import '../../shared_widget/nav_bar/nav_bar.dart';
 // Import your page widgets:
@@ -204,8 +206,10 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      AllProductPage(),
-      CartInfoPage(),
+      DeliveryInfoScreen(),
+      CustomChocolateOrderPage(),
+      //AllProductPage(),
+     // CartInfoPage(),
       CardFavWidget(),
     ];
     return SafeArea(

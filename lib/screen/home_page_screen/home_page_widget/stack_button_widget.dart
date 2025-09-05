@@ -2,36 +2,41 @@ import 'package:chocolate_store/screen/home_page_screen/home_page_widget/items_w
 import 'package:flutter/material.dart';
 import '../home_page_model/prod_class.dart';
 import 'catr_button_widget.dart';
+import 'favorite_button_widget.dart';
 
 class StackButtonWidget extends StatelessWidget {
-  StackButtonWidget({super.key});
+  final ProdInfo? prodInfo;
+  
+  const StackButtonWidget({super.key, this.prodInfo});
 
   @override
   Widget build(BuildContext context) {
+    // إذا لم يتم تمرير prodInfo، استخدم بيانات افتراضية
+    final productInfo = prodInfo ?? ProdInfo(
+      prodId: 0,
+      nameProd: 'منتج افتراضي',
+      description: 'وصف المنتج',
+      price: '0 \$',
+    );
+
     return Container(
       width: 170,
       height: 190,
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          ItemWidget(
-            prodInfo: ProdInfo(
-                image: null,
-                nameProd: 'منتج جديد',
-                description: 'شوكولا بيضاء',
-                price: '1200',
-                prodId: 123),
+          ItemWidget(prodInfo: productInfo),
+          // زر المفضلة (أعلى اليسار)
+          Positioned(
+            top: 8,
+            left: 8,
+            child: FavoriteButton(productId: productInfo.prodId, size: 18),
           ),
+          // زر السلة (أسفل اليمين)
           Positioned(
             bottom: 16,
             right: -8,
-            child: CartButton(
-              prodInfo: ProdInfo(
-                  prodId: 1,
-                  nameProd: 'شوكولا بيضاء',
-                  description: 'حليب',
-                  price: '1200 \$'),
-            ),
+            child: CartButton(prodInfo: productInfo),
           ),
         ],
       ),

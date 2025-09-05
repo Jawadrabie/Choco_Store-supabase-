@@ -6,6 +6,7 @@ import '../../repositories/product_repository.dart';
 import '../../screen/home_page_screen/home_page_model/prod_class.dart';
 import '../../screen/home_page_screen/home_page_widget/items_widget.dart';
 import '../../screen/home_page_screen/home_page_widget/catr_button_widget.dart';
+import '../../screen/home_page_screen/home_page_widget/stack_button_widget.dart';
 
 class FeaturedProductsScreen extends StatefulWidget {
   const FeaturedProductsScreen({super.key});
@@ -78,17 +79,7 @@ class _FeaturedProductsScreenState extends State<FeaturedProductsScreen> {
                   price: '${p.price} \$',
                 );
 
-                return Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    ItemWidget(prodInfo: prodInfo),
-                    Positioned(
-                      bottom: 16,
-                      right: -8,
-                      child: CartButton(prodInfo: prodInfo),
-                    ),
-                  ],
-                );
+                                        return StackButtonWidget(prodInfo: prodInfo);
               },
             );
           },

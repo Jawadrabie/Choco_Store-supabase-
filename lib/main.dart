@@ -6,10 +6,14 @@ import 'supabase_config.dart';
 import 'repositories/auth_repository.dart';
 import 'repositories/product_repository.dart';
 import 'repositories/category_repository.dart';
+import 'repositories/order_repository.dart';
+import 'repositories/custom_chocolate_order_repository.dart';
 import 'services/local_cache_service.dart';
 import 'cubits/auth/auth_cubit.dart';
 import 'cubits/product/product_cubit.dart';
 import 'cubits/category/category_cubit.dart';
+import 'cubits/favorites/favorites_cubit.dart';
+import 'screen/cart_info_page/cart_cubit/cart_cubit.dart';
 import 'screen/sign_in_up_screen/sign_in_up_page.dart';
 import 'screen/home_page_screen/home_page.dart';
 
@@ -35,6 +39,8 @@ class ChocolateStore extends StatelessWidget {
         RepositoryProvider<AuthRepository>(create: (_) => AuthRepository()),
         RepositoryProvider<ProductRepository>(create: (_) => ProductRepository()),
         RepositoryProvider<CategoryRepository>(create: (_) => CategoryRepository()),
+        RepositoryProvider<OrderRepository>(create: (_) => OrderRepository()),
+        RepositoryProvider<CustomChocolateOrderRepository>(create: (_) => CustomChocolateOrderRepository()),
         RepositoryProvider<LocalCacheService>(create: (_) => LocalCacheService()),
       ],
       child: MultiBlocProvider(
@@ -57,6 +63,12 @@ class ChocolateStore extends StatelessWidget {
             )
               ..loadFromCache()
               ..loadFromNetwork(),
+          ),
+          BlocProvider<CartCubit>(
+            create: (ctx) => CartCubit(ctx.read<LocalCacheService>()),
+          ),
+          BlocProvider<FavoritesCubit>(
+            create: (ctx) => FavoritesCubit(ctx.read<LocalCacheService>()),
           ),
         ],
         child: MaterialApp(

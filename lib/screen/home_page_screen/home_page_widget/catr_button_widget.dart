@@ -17,14 +17,13 @@ class CartButton extends StatelessWidget {
         context.read<CartCubit>().addToCart(prodInfo);
 
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('تمت الإضافة بنجاح!')),
+          SnackBar(
+            content: Text('تمت الإضافة للسلة!'),
+            duration: Duration(seconds: 1),
+            backgroundColor: Colors.green,
+          ),
         );
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (BuildContext context) {
-            return CartInfoPage();
-          }),
-        );
+        // إزالة التنقل التلقائي لصفحة السلة
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color(0xFF160704),

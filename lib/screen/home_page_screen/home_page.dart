@@ -14,6 +14,7 @@ import 'home_page_widget/recommend_prod_widget.dart';
 import '../../repositories/product_repository.dart';
 import '../home_page_screen/home_page_widget/items_widget.dart';
 import '../home_page_screen/home_page_widget/catr_button_widget.dart';
+import '../home_page_screen/home_page_widget/stack_button_widget.dart';
 import '../home_page_screen/home_page_model/prod_class.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../cubits/category/category_cubit.dart';
@@ -183,17 +184,7 @@ class _HomePageState extends State<HomePage> {
                               description: p.description ?? '',
                               price: '${p.price} \$',
                             );
-                            return Stack(
-                              clipBehavior: Clip.none,
-                              children: [
-                                ItemWidget(prodInfo: prodInfo),
-                                Positioned(
-                                  bottom: 16,
-                                  right: -8,
-                                  child: CartButton(prodInfo: prodInfo),
-                                ),
-                              ],
-                            );
+                            return StackButtonWidget(prodInfo: prodInfo);
                           },
                         );
                       },

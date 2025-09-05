@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../shared_widget/custom_child_container.dart';
 import '../home_page_model/prod_class.dart';
 import 'catr_button_widget.dart';
 import 'package:chocolate_store/screen/profile/profile_page.dart';
+import '../../../screen/cart_info_page/cart_cubit/cart_cubit.dart';
+import '../../../screen/favorite_page/favoraite_page.dart';
+import '../../../screen/cart_info_page/cart_info_page.dart';
+import '../../../presentation/screens/search_screen.dart';
 
 class AppBarProfile extends StatefulWidget {
   AppBarProfile({super.key, required this.userName});
@@ -63,47 +68,44 @@ class _AppBarProfileState extends State<AppBarProfile> {
               ],
             ),
             const Spacer(),
-            Stack(clipBehavior: Clip.none, children: [
-              CustomChildContainer(
-                width: 95,
-                height: 46,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      right: 18, left: 30, top: 6, bottom: 4),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Text(
-                        'المنتجات',
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF160704)),
+            // أيقونات البحث والسلة في الزاوية اليمينية
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // أيقونة البحث
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SearchScreen(),
                       ),
-                      const SizedBox(height: 2),
-                      Text(
-                        '$counter',
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF160704),
-                        ),
-                      ),
-                    ],
+                    );
+                  },
+                  icon: Icon(
+                    Icons.search,
+                    color: Colors.white,
+                    size: 24,
                   ),
                 ),
-              ),
-              Positioned(
-                left: -27,
-                child: CartButton(
-                  prodInfo: ProdInfo(
-                      prodId: 1,
-                      nameProd: 'شوكولا بيضاء',
-                      description: 'حليب',
-                      price: '1200 \$'),
+                // أيقونة السلة
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CartInfoPage(),
+                      ),
+                    );
+                  },
+                  icon: Icon(
+                    Icons.shopping_cart_outlined,
+                    color: Colors.white,
+                    size: 24,
+                  ),
                 ),
-              ),
-            ]),
+              ],
+            ),
           ],
         ),
       ),

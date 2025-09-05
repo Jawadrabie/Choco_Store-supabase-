@@ -26,4 +26,26 @@ class ProdInfo {
 
   @override
   int get hashCode => prodId.hashCode;
+
+  // تحويل إلى JSON
+  Map<String, dynamic> toJson() {
+    return {
+      'prodId': prodId,
+      'nameProd': nameProd,
+      'description': description,
+      'price': price,
+      'isFavorite': isFavorite,
+    };
+  }
+
+  // تحويل من JSON
+  factory ProdInfo.fromJson(Map<String, dynamic> json) {
+    return ProdInfo(
+      prodId: json['prodId'] as int,
+      nameProd: json['nameProd'] as String,
+      description: json['description'] as String,
+      price: json['price'] as String,
+      isFavorite: json['isFavorite'] as bool? ?? false,
+    );
+  }
 }

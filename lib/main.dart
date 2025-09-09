@@ -44,6 +44,8 @@ class ChocolateStore extends StatelessWidget {
         RepositoryProvider<CustomChocolateOrderRepository>(create: (_) => CustomChocolateOrderRepository()),
         RepositoryProvider<LocalCacheService>(create: (_) => LocalCacheService()),
       ],
+
+
       child: MultiBlocProvider(
         providers: [
           BlocProvider<AuthCubit>(

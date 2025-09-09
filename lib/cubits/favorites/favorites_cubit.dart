@@ -66,3 +66,4 @@ class FavoritesCubit extends Cubit<Set<int>> {
     }
   }
 }
+

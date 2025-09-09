@@ -199,9 +199,9 @@ class _HomePageState extends State<HomePage> {
       ),
       DeliveryInfoScreen(),
       CustomChocolateOrderPage(),
+
       //AllProductPage(),
      // CartInfoPage(),
-
 
       CardFavWidget(),
     ];

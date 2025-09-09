@@ -2,6 +2,7 @@ import 'package:chocolate_store/screen/splash_screen/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+import '../home_page_screen/home_page.dart';
 import '../sign_in_up_screen/sign_in_up_page.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -18,7 +19,11 @@ class _SplashScreenState extends State<SplashScreen> {
     // This controls the duration the splash screen appears (here: 3 seconds)
     Timer(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => ChocoIntroScreen()),
+        MaterialPageRoute(builder: (context) =>
+        HomePage(),
+           // ChocoIntroScreen()
+
+        ),
       );
     });
   }

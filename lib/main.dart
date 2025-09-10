@@ -44,6 +44,7 @@ class ChocolateStore extends StatelessWidget {
         RepositoryProvider<CustomChocolateOrderRepository>(create: (_) => CustomChocolateOrderRepository()),
         RepositoryProvider<LocalCacheService>(create: (_) => LocalCacheService()),
       ],
+
       child: MultiBlocProvider(
         providers: [
           BlocProvider<AuthCubit>(
@@ -76,7 +77,11 @@ class ChocolateStore extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'شـوكـولا مـزاج',
           theme: ThemeData(primarySwatch: Colors.brown),
+<<<<<<< HEAD
           home: initialLoggedIn ? HomePage() : const SplashScreen(),
+=======
+          home: initialLoggedIn ? SplashScreen() : const SignInPage(),
+>>>>>>> 7a26b207434847a11ff955558720d47470c76cbf
         ),
       ),
     );

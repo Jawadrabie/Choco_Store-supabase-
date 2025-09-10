@@ -21,9 +21,20 @@ class FavoritPage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor:  Color(0xFF995D39),
           elevation: 0,
+<<<<<<< HEAD
           title: Text(
             'منتجاتك المفضلة',
             style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+=======
+          automaticallyImplyLeading: false, // إزالة سهم الرجوع
+          title: const Text(
+            'المفضلة',
+            style: TextStyle(
+              color: Colors.white, // لون النص أبيض
+              fontSize: 24, 
+              fontWeight: FontWeight.bold,
+            ),
+>>>>>>> 7a26b207434847a11ff955558720d47470c76cbf
           ),
           centerTitle: true,
         ),

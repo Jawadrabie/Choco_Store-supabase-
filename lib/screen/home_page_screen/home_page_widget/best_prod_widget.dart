@@ -21,43 +21,49 @@ class BestProdWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'ٍ'
-                      'تصفح منتجنا المميز\n ✨!لهذا الأسبوع',
-                      style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF160704)),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 4),
+                      child: const Text(
+
+                        'تصفح منتجاتنا المميزة \n\n ✨ !لهذا الأسبوع',
+                        style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF160704)),
+                      ),
                     ),
                     SizedBox(
-                      height: 24,
+                      height: 3,
                     ),
-                    Row(
-                      children: [
-                        const Text(
-                          'عرض المزيد',
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF160704),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 26,top: 12),
+                      child: Row(
+                        children: [
+                          const Text(
+                            'عرض المزيد',
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF160704),
+                            ),
                           ),
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (BuildContext context) =>  TrendingProductsScreen(),
-                              )
-                            );
-                          },
-                          icon: const Icon(
-                            Icons.arrow_forward,
-                            size: 19,
-                            color: Color(0xFF160704),
+                          IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) =>  TrendingProductsScreen(),
+                                )
+                              );
+                            },
+                            icon: const Icon(
+                              Icons.arrow_forward,
+                              size: 19,
+                              color: Color(0xFF160704),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),

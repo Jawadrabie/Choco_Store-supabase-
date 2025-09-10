@@ -98,137 +98,159 @@ class _ProfilePageState extends State<ProfilePage> {
     if (!mounted) return;
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (_) => const SignInPage()),
-          (route) => false,
+      (route) => false,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final fullName = _profile != null
-        ? (_profile!['full_name'] ?? '') as String
-        : '';
+    final fullName =
+        _profile != null ? (_profile!['full_name'] ?? '') as String : '';
     final phone = _profile != null ? (_profile!['phone'] ?? '') as String : '';
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('الملف الشخصي'),
+        title: const Text('الملف الشخصي', style: TextStyle(color: Colors.white),),
         backgroundColor: const Color(0xFF995D39),
         centerTitle: true,
       ),
       body: CustomMainContainer(
         child: _loading
-            ? const Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator(color: Color(0xFFBD9872)))
             : SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
-            child: Column(
-              children: [
-                const SizedBox(height: 8),
-                // Profile card
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.9),
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.08),
-                        blurRadius: 8,
-                        offset: const Offset(0, 4),
-                      )
-                    ],
-                  ),
-                  child: Row(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 16),
+                  child: Column(
                     children: [
-                      CircleAvatar(
-                        radius: 36,
-                        backgroundColor: const Color(0xFF9C5D3A),
-                        child: Text(
-                          (fullName.isNotEmpty ? fullName[0] : (_email.isNotEmpty ? _email[0] : 'U')).toUpperCase(),
-                          style: const TextStyle(fontSize: 28, color: Colors.white),
+                      const SizedBox(height: 8),
+                      // Profile card
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.9),
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.08),
+                              blurRadius: 8,
+                              offset: const Offset(0, 4),
+                            )
+                          ],
                         ),
-                      ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        child: Row(
                           children: [
-                            Text(
-                              fullName.isNotEmpty ? fullName : 'اسم غير محدد',
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF160704),
+                            CircleAvatar(
+                              radius: 36,
+                              backgroundColor: const Color(0xFF9C5D3A),
+                              child: Text(
+                                (fullName.isNotEmpty
+                                        ? fullName[0]
+                                        : (_email.isNotEmpty ? _email[0] : 'U'))
+                                    .toUpperCase(),
+                                style: const TextStyle(
+                                    fontSize: 28, color: Colors.white),
                               ),
                             ),
-                            const SizedBox(height: 6),
-                            Text(
-                              _email.isNotEmpty ? _email : 'لا يوجد بريد مسجّل',
-                              style: const TextStyle(fontSize: 14, color: Color(0xFF160704)),
-                            ),
-                            const SizedBox(height: 6),
-                            Text(
-                              phone.isNotEmpty ? phone : 'لا يوجد رقم مسجل',
-                              style: const TextStyle(fontSize: 14, color: Color(0xFF160704)),
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    fullName.isNotEmpty
+                                        ? fullName
+                                        : 'اسم غير محدد',
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF160704),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 6),
+                                  Text(
+                                    _email.isNotEmpty
+                                        ? _email
+                                        : 'لا يوجد بريد مسجّل',
+                                    style: const TextStyle(
+                                        fontSize: 14, color: Color(0xFF160704)),
+                                  ),
+                                  const SizedBox(height: 6),
+                                  Text(
+                                    phone.isNotEmpty
+                                        ? phone
+                                        : 'لا يوجد رقم مسجل',
+                                    style: const TextStyle(
+                                        fontSize: 14, color: Color(0xFF160704)),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                ),
 
-                const SizedBox(height: 24),
+                      const SizedBox(height: 24),
 
-                // Additional info or action buttons (read-only as requested)
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      _ReadOnlyField(label: 'الاسم', value: fullName),
-                      const SizedBox(height: 10),
-                      _ReadOnlyField(label: 'البريد الإلكتروني', value: _email),
-                      const SizedBox(height: 10),
-                      _ReadOnlyField(label: 'رقم الجوال', value: phone),
-                    ],
-                  ),
-                ),
-
-                // Sign out button fixed at bottom
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 12.0),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 52,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF9C5D3A),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      // Additional info or action buttons (read-only as requested)
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            _ReadOnlyField(label: 'الاسم', value: fullName),
+                            const SizedBox(height: 10),
+                            _ReadOnlyField(
+                                label: 'البريد الإلكتروني', value: _email),
+                            const SizedBox(height: 10),
+                            _ReadOnlyField(label: 'رقم الجوال', value: phone),
+                          ],
+                        ),
                       ),
-                      onPressed: () async {
-                        // confirm dialog
-                        final ok = await showDialog<bool>(
-                          context: context,
-                          builder: (ctx) => AlertDialog(
-                            title: const Text('تأكيد'),
-                            content: const Text('هل تريد تسجيل الخروج؟'),
-                            actions: [
-                              TextButton(onPressed: () => Navigator.of(ctx).pop(false), child: const Text('إلغاء')),
-                              TextButton(onPressed: () => Navigator.of(ctx).pop(true), child: const Text('نعم')),
-                            ],
+
+                      // Sign out button fixed at bottom
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 12.0),
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: 52,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF9C5D3A),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12)),
+                            ),
+                            onPressed: () async {
+                              // confirm dialog
+                              final ok = await showDialog<bool>(
+                                context: context,
+                                builder: (ctx) => AlertDialog(
+                                  title: const Text('تأكيد'),
+                                  content: const Text('هل تريد تسجيل الخروج؟'),
+                                  actions: [
+                                    TextButton(
+                                        onPressed: () =>
+                                            Navigator.of(ctx).pop(false),
+                                        child: const Text('إلغاء')),
+                                    TextButton(
+                                        onPressed: () =>
+                                            Navigator.of(ctx).pop(true),
+                                        child: const Text('نعم')),
+                                  ],
+                                ),
+                              );
+                              if (ok == true) await _onSignOut();
+                            },
+                            child: const Text('تسجيل خروج',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 16)),
                           ),
-                        );
-                        if (ok == true) await _onSignOut();
-                      },
-                      child: const Text('تسجيل خروج', style: TextStyle(color: Color(0xFF160704), fontSize: 16)),
-                    ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        ),
+              ),
       ),
     );
   }
@@ -237,21 +259,39 @@ class _ProfilePageState extends State<ProfilePage> {
 class _ReadOnlyField extends StatelessWidget {
   final String label;
   final String value;
+
   const _ReadOnlyField({required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text(label, style: const TextStyle(fontSize: 13, color: Color(0xFF160704), fontWeight: FontWeight.bold)),
+      Text(label,
+          style: const TextStyle(
+              fontSize: 16,
+              color: Color(0xFF160704),
+              fontWeight: FontWeight.bold)),
       const SizedBox(height: 6),
       Container(
+        width: 350,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: const Color(0xFF160704), width: 0.8),
         ),
-        child: Text(value.isNotEmpty ? value : '-', style: const TextStyle(fontSize: 15, color: Color(0xFF160704))),
+        child: Align(
+          alignment: Alignment.center, // أو centerRight أو center حسب اللي بدك
+          child: Text(
+            value.isNotEmpty ? value : '-',
+            style: const TextStyle(
+              fontSize: 15,
+              color: Color(0xFF160704),
+              letterSpacing: 1.5, // هنا ممكن تزيد أو تقل حسب المساحة
+            ),
+            textAlign: TextAlign.justify,
+            textWidthBasis: TextWidthBasis.longestLine,
+          ),
+        ),
       ),
     ]);
   }

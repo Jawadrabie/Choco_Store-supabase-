@@ -8,7 +8,7 @@ class RecommendProd extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 60),
       child: Row(
         children: [
           const Text(
@@ -26,13 +26,19 @@ class RecommendProd extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => const FeaturedProductsScreen(),
+                  builder: (BuildContext context) =>
+                      const FeaturedProductsScreen(),
                 ),
               );
             },
             child: const Text(
               'عرض الكل',
-              style: TextStyle(color: Colors.white, fontSize: 15),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                decoration: TextDecoration.underline,
+                decorationColor: Colors.white,
+              ),
             ),
           ),
         ],

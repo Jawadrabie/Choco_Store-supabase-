@@ -14,23 +14,9 @@ class ChocolateIntroScreen extends StatelessWidget {
           Positioned.fill(
 
             child: Image.asset(
-              'asset/image/welcome_screen.png',
+              'asset/image/Gemini_Generated_Image_fyivy1fyivy1fyiv.png',
               fit: BoxFit.cover,
               height: 850,
-            ),
-          ),
-          // Cookies image at top center
-          Positioned(
-            top: 110,
-            left: 0,
-            right: 0,
-            child: Center(
-              child: Image.asset(
-                'asset/image/chocolate_screen.png', // Replace with your cookies asset path
-                width: 280,
-                height:280,
-                fit: BoxFit.contain,
-              ),
             ),
           ),
           // Skip button at the top right
@@ -48,7 +34,7 @@ class ChocolateIntroScreen extends StatelessWidget {
                 );
               },
               child: Text(
-                'Skip',
+                'تخطي',
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -80,9 +66,9 @@ class ChocolateIntroScreen extends StatelessWidget {
           Positioned(
             left: 32,
             right: 32,
-            top: 510, // adjust this value up/down as you like
+            top: 600, // adjust this value up/down as you like
             child: Text(
-              '"Welcome to ChocoDelight! Indulge in the Sweetest Experience."',
+              'نحاول أن نجعل كل قضمة من الشوكولا تجربة ساحرة\n تأخذك بعيدًا عن الواقع، لتعيش لحظات من السعادة والدفء\n في عالم من الحب والشوكولا',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,
@@ -106,7 +92,7 @@ class ChocolateIntroScreen extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.brown[800],
+                  backgroundColor:Color(0xFF230B02) ,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18),
                   ),
@@ -122,7 +108,7 @@ class ChocolateIntroScreen extends StatelessWidget {
                   );
                 },
                 child: const Text(
-                  'Next',
+                  'التـالـي',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,

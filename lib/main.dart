@@ -1,4 +1,5 @@
 // lib/main.dart
+import 'package:chocolate_store/screen/splash_screen/first_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -73,9 +74,9 @@ class ChocolateStore extends StatelessWidget {
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'شوكولا مزاج',
+          title: 'شـوكـولا مـزاج',
           theme: ThemeData(primarySwatch: Colors.brown),
-          home: initialLoggedIn ? HomePage() : const SignInPage(),
+          home: initialLoggedIn ? HomePage() : const SplashScreen(),
         ),
       ),
     );

@@ -13,7 +13,7 @@ class ChocoIntroScreen extends StatelessWidget {
           // Background image (replace with your asset)
           Positioned.fill(
             child: Image.asset(
-              'asset/image/welcome_screen.png',
+              'asset/image/splashh.png',
               fit: BoxFit.cover,
             ),
           ),
@@ -24,19 +24,19 @@ class ChocoIntroScreen extends StatelessWidget {
             right: 0,
             child: Center(
               child: Text(
-                'chocolate',
+                'شـوكـولا مـزاج',
                 style: TextStyle(
-                  color: Colors.white,
+                color:   Colors.white,
                   fontSize: 60,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 2,
-                  shadows: [
-                    Shadow(
-                      blurRadius: 8,
-                      color: Colors.black38,
-                      offset: Offset(2, 2),
-                    ),
-                  ],
+                  // fontWeight: FontWeight.bold,
+
+                  // shadows: [
+                  //   Shadow(
+                  //     blurRadius: 8,
+                  //     color: Colors.black38,
+                  //     offset: Offset(2, 2),
+                  //   ),
+                  // ],
                 ),
               ),
             ),
@@ -56,7 +56,7 @@ class ChocoIntroScreen extends StatelessWidget {
                   );
               },
               child: Text(
-                'Skip',
+                'تخطي',
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -76,9 +76,9 @@ class ChocoIntroScreen extends StatelessWidget {
           Positioned(
             left: 32,
             right: 32,
-            top: 510, // adjust this value up/down as you like
+            top: 600, // adjust this value up/down as you like
             child: Text(
-              '"Welcome to ChocoDelight! Indulge in the Sweetest Experience."',
+              '!مرحباً بكم في متجر مزاج، خياركم الأول للسعادة',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,
@@ -102,7 +102,7 @@ class ChocoIntroScreen extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.brown[800],
+                  backgroundColor:Color(0xFF230B02) ,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18),
                   ),
@@ -118,7 +118,7 @@ class ChocoIntroScreen extends StatelessWidget {
                   );
                 },
                 child: const Text(
-                  'Next',
+                  'التالي',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,

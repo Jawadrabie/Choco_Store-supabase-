@@ -27,8 +27,8 @@ class ItemWidget extends StatelessWidget {
               topRight: Radius.circular(20),
               bottomLeft: Radius.circular(20),
               bottomRight: Radius.circular(80)),
-          width: 180,
-          height: 150,
+          width: 140,
+          height: 155,
           child: Padding(
             padding: const EdgeInsets.all(6.0),
             child: Column(
@@ -56,24 +56,17 @@ class ItemWidget extends StatelessWidget {
                 Center(
                   child: Text(
                     '${prodInfo.nameProd}',
-                    style: TextStyle(fontSize: 15),
-                    maxLines: 1,
+                    textAlign: TextAlign.center,
+                    textDirection: TextDirection.rtl,
+                    style: TextStyle(fontSize: 16),
+                    maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                Text(
-                  '${prodInfo.description}',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
+                SizedBox(height: 5,),
                 Text(
                   '${prodInfo.price}',
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                 ),
               ],
             ),

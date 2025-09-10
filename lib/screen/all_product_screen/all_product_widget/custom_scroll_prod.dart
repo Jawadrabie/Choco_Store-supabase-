@@ -42,7 +42,7 @@ class CustomScrollProd extends StatelessWidget {
         ),
         SliverToBoxAdapter(child: BlocBuilder<GetSearchProdCubit,GetSearchProdState>(builder: (context, state){
           if(state is InitialState)
-            {return Center(child: CircularProgressIndicator(color: Colors.brown,));}
+            {return Center(child: CircularProgressIndicator(color:  Color(0xFFBD9872),));}
           else if (state is LoadedProd)
             {return SignInPage();}
           else{

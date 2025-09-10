@@ -1,3 +1,4 @@
+import 'package:chocolate_store/shared_widget/custom_main_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../repositories/product_repository.dart';
@@ -64,15 +65,15 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFD6C0B0),
               appBar: AppBar(
-          backgroundColor: const Color(0xFFD6C0B0),
+          backgroundColor:   Color(0xFF995D39),
           elevation: 0,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black),
+            icon: Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
             'البحث',
-            style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+            style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
           actions: [
@@ -80,7 +81,7 @@ class _SearchScreenState extends State<SearchScreen> {
               margin: EdgeInsets.only(right: 16),
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
-                color: Colors.brown[700],
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
@@ -95,14 +96,14 @@ class _SearchScreenState extends State<SearchScreen> {
                 children: [
                   Icon(
                     Icons.search,
-                    color: Colors.white,
+                    color: Colors.brown[900],
                     size: 16,
                   ),
                   SizedBox(width: 4),
                   Text(
                     '${_filteredProducts.length}',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.brown[900],
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                     ),
@@ -112,94 +113,96 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           ],
         ),
-      body: Column(
-        children: [
-          // شريط البحث
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextField(
-              controller: _searchController,
-              onChanged: _filterProducts,
-              decoration: InputDecoration(
-                hintText: 'ابحث عن المنتجات...',
-                prefixIcon: Icon(Icons.search, color: Colors.grey[600]),
-                suffixIcon: _searchController.text.isNotEmpty
-                    ? IconButton(
-                        icon: Icon(Icons.clear, color: Colors.grey[600]),
-                        onPressed: () {
-                          _searchController.clear();
-                          _filterProducts('');
-                        },
-                      )
-                    : null,
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide.none,
+      body: CustomMainContainer(
+        child: Column(
+          children: [
+            // شريط البحث
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                controller: _searchController,
+                onChanged: _filterProducts,
+                decoration: InputDecoration(
+                  hintText: 'ابحث عن المنتجات...',
+                  prefixIcon: Icon(Icons.search, color: Colors.grey[600]),
+                  suffixIcon: _searchController.text.isNotEmpty
+                      ? IconButton(
+                          icon: Icon(Icons.clear, color: Colors.grey[600]),
+                          onPressed: () {
+                            _searchController.clear();
+                            _filterProducts('');
+                          },
+                        )
+                      : null,
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 ),
-                contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               ),
             ),
-          ),
-          // نتائج البحث
-          Expanded(
-            child: _isLoading
-                ? Center(child: CircularProgressIndicator())
-                : _filteredProducts.isEmpty
-                    ? Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.search_off,
-                              size: 80,
-                              color: Colors.grey[400],
-                            ),
-                            SizedBox(height: 16),
-                            Text(
-                              _searchController.text.isEmpty
-                                  ? 'ابدأ بالبحث عن المنتجات'
-                                  : 'لم يتم العثور على نتائج',
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.grey[600],
-                                fontWeight: FontWeight.w500,
+            // نتائج البحث
+            Expanded(
+              child: _isLoading
+                  ? Center(child: CircularProgressIndicator(color:   Color(0xFFBD9872),))
+                  : _filteredProducts.isEmpty
+                      ? Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.search_off,
+                                size: 80,
+                                color: Colors.grey[400],
                               ),
-                            ),
-                          ],
+                              SizedBox(height: 16),
+                              Text(
+                                _searchController.text.isEmpty
+                                    ? 'ابدأ بالبحث عن المنتجات'
+                                    : 'لم يتم العثور على نتائج',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.grey[600],
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      : GridView.builder(
+                          padding: const EdgeInsets.all(16),
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            // childAspectRatio: 0.85,
+                            crossAxisSpacing: 12,
+                            mainAxisSpacing: 12,
+                          ),
+                          itemCount: _filteredProducts.length,
+                          itemBuilder: (context, index) {
+                            final product = _filteredProducts[index];
+                            final hasUrl = product.imageUrl != null && product.imageUrl!.isNotEmpty;
+                            final prodInfo = ProdInfo(
+                              prodId: product.id.hashCode,
+                              image: hasUrl
+                                  ? Image.network(
+                                      product.imageUrl!,
+                                      fit: BoxFit.cover,
+                                      errorBuilder: (_, __, ___) => Image.asset('asset/image/main_image.jpg', fit: BoxFit.cover),
+                                    )
+                                  : Image.asset('asset/image/main_image.jpg', fit: BoxFit.cover),
+                              nameProd: product.name,
+                              description: product.description ?? '',
+                              price: '${product.price} \$',
+                            );
+                            return StackButtonWidget(prodInfo: prodInfo);
+                          },
                         ),
-                      )
-                    : GridView.builder(
-                        padding: const EdgeInsets.all(16),
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 0.85,
-                          crossAxisSpacing: 12,
-                          mainAxisSpacing: 12,
-                        ),
-                        itemCount: _filteredProducts.length,
-                        itemBuilder: (context, index) {
-                          final product = _filteredProducts[index];
-                          final hasUrl = product.imageUrl != null && product.imageUrl!.isNotEmpty;
-                          final prodInfo = ProdInfo(
-                            prodId: product.id.hashCode,
-                            image: hasUrl
-                                ? Image.network(
-                                    product.imageUrl!,
-                                    fit: BoxFit.cover,
-                                    errorBuilder: (_, __, ___) => Image.asset('asset/image/main_image.jpg', fit: BoxFit.cover),
-                                  )
-                                : Image.asset('asset/image/main_image.jpg', fit: BoxFit.cover),
-                            nameProd: product.name,
-                            description: product.description ?? '',
-                            price: '${product.price} \$',
-                          );
-                          return StackButtonWidget(prodInfo: prodInfo);
-                        },
-                      ),
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

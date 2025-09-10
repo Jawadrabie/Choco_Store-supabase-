@@ -60,7 +60,7 @@ class CardFavWidget extends StatelessWidget {
               future: context.read<ProductRepository>().getAllProducts(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                  return Center(child: CircularProgressIndicator(color:  Color(0xFFBD9872),));
                 }
                 if (snapshot.hasError) {
                   return Center(

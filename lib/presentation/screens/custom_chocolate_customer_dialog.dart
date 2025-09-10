@@ -74,25 +74,28 @@ class _CustomChocolateCustomerDialogState extends State<CustomChocolateCustomerD
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(color: Colors.brown.shade200),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text('تفاصيل الطلب:', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-                      const SizedBox(height: 8),
-                      Text('نوع الشوكولا: ${widget.chocolateType}'),
-                      Text('المكونات: ${widget.ingredients.join(", ")}'),
-                      Text('طريقة التقديم: ${widget.presentationType}'),
-                      Text('الوزن: ${widget.weightGrams} غرام'),
-                      if (widget.notes != null && widget.notes!.isNotEmpty) Text('ملاحظات: ${widget.notes}'),
-                      const SizedBox(height: 8),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text('السعر الإجمالي:', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
-                          Text('${widget.totalPrice.toStringAsFixed(2)} \$', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: brown700)),
-                        ],
-                      ),
-                    ],
+                  child: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text('تفاصيل الطلب:', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                        const SizedBox(height: 8),
+                        Text('نوع الشوكولا: ${widget.chocolateType}'),
+                        Text('المكونات: ${widget.ingredients.join(", ")}'),
+                        Text('طريقة التقديم: ${widget.presentationType}'),
+                        Text('الوزن: ${widget.weightGrams} غرام'),
+                        if (widget.notes != null && widget.notes!.isNotEmpty) Text('ملاحظات: ${widget.notes}'),
+                        const SizedBox(height: 8),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text('السعر الإجمالي:', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+                            Text('${widget.totalPrice.toStringAsFixed(2)} \$', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: brown700)),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -164,7 +167,7 @@ class _CustomChocolateCustomerDialogState extends State<CustomChocolateCustomerD
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           ),
           child: _isSubmitting
-              ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, valueColor: AlwaysStoppedAnimation<Color>(Colors.white)))
+              ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: Color(0xFFBD9872), strokeWidth: 2, valueColor: AlwaysStoppedAnimation<Color>(Colors.white)))
               : const Text('تأكيد الطلب'),
         ),
       ],

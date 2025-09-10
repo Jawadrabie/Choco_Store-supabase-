@@ -20,7 +20,7 @@ class StackButtonWidget extends StatelessWidget {
     );
 
     return Container(
-      width: 170,
+      width: 160,
       height: 190,
       child: Stack(
         clipBehavior: Clip.none,
@@ -29,13 +29,13 @@ class StackButtonWidget extends StatelessWidget {
           // زر المفضلة (أعلى اليسار)
           Positioned(
             top: 8,
-            left: 8,
+           left: 0,
             child: FavoriteButton(productId: productInfo.prodId, size: 18),
           ),
           // زر السلة (أسفل اليمين)
           Positioned(
-            bottom: 16,
-            right: -8,
+            bottom: 4,
+            right: 14,
             child: CartButton(prodInfo: productInfo),
           ),
         ],

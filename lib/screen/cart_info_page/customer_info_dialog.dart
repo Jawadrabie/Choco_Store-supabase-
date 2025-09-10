@@ -172,7 +172,7 @@ class _CustomerInfoDialogState extends State<CustomerInfoDialog> {
               ? SizedBox(
                   width: 20,
                   height: 20,
-                  child: CircularProgressIndicator(
+                  child: CircularProgressIndicator( color:  Color(0xFFBD9872),
                     strokeWidth: 2,
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                   ),

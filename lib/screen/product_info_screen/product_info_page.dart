@@ -59,24 +59,34 @@ class ProductInfoPage extends StatelessWidget {
           SizedBox(
             height: 30,
           ),
-          Text(
-            '${prodInfo.description}',
-            style: TextStyle(
-                color: CupertinoColors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.w300,
-                decoration: TextDecoration.none),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 9),
+              child: Text(
+                '${prodInfo.description}',
+                style: TextStyle(
+                    color: CupertinoColors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w300,
+                    decoration: TextDecoration.none),
+              ),
+            ),
           ),
           SizedBox(
             height: 20,
           ),
-          Text(
-            '${prodInfo.price} \$',
-            style: TextStyle(
-                color: CupertinoColors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.w300,
-                decoration: TextDecoration.none),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 9.0),
+              child: Text(
+                '${prodInfo.price} ',
+                style: TextStyle(
+                    color: CupertinoColors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w300,
+                    decoration: TextDecoration.none),
+              ),
+            ),
           ),
           SizedBox(
             height: 20,
@@ -87,14 +97,7 @@ class ProductInfoPage extends StatelessWidget {
             indent: 12,
             endIndent: 12,
           ),
-          Text(
-            '${prodInfo.description} ',
-            style: TextStyle(
-                color: CupertinoColors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.w300,
-                decoration: TextDecoration.none),
-          ),
+
           SizedBox(
             height: 80,
           ),

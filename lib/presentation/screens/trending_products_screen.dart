@@ -1,15 +1,14 @@
+import 'package:chocolate_store/shared_widget/custom_main_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../models/product_model.dart';
 import '../../repositories/product_repository.dart';
 import '../../screen/home_page_screen/home_page_model/prod_class.dart';
-import '../../screen/home_page_screen/home_page_widget/items_widget.dart';
-import '../../screen/home_page_screen/home_page_widget/catr_button_widget.dart';
 import '../../screen/home_page_screen/home_page_widget/stack_button_widget.dart';
 
 class TrendingProductsScreen extends StatefulWidget {
-  const TrendingProductsScreen({super.key});
+  TrendingProductsScreen({super.key});
 
   @override
   State<TrendingProductsScreen> createState() => _TrendingProductsScreenState();
@@ -28,8 +27,12 @@ class _TrendingProductsScreenState extends State<TrendingProductsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFD6C0B0),
-      appBar: AppBar(title: const Text('المنتجات المميزة لهذا الاسبوع')),
+      backgroundColor: const Color(0xFF995D39),
+      appBar: AppBar( backgroundColor: Color(0xFF995D39),
+          title: const Text(
+        'المنتجات المميزة لهذا الاسبوع',
+        style: TextStyle(color: Colors.white),
+      )),
       body: RefreshIndicator(
         onRefresh: () async {
           final repo = context.read<ProductRepository>();
@@ -38,57 +41,64 @@ class _TrendingProductsScreenState extends State<TrendingProductsScreen> {
           });
           await _future;
         },
-        child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: FutureBuilder<List<Product>>(
-          future: _future,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            if (snapshot.hasError) {
-              print('خطأ: ${snapshot.error}');
-              return Center(child: Text('خطأ: ${snapshot.error}'));
-            }
-            final products = snapshot.data ?? const <Product>[];
-            if (products.isEmpty) {
-              return const Center(child: Text('لا يوجد منتجات رائجة حاليًا'));
-            }
+        child: CustomMainContainer(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: FutureBuilder<List<Product>>(
+              future: _future,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                      child: CircularProgressIndicator(
+                    color: Color(0xFFBD9872),
+                  ));
+                }
+                if (snapshot.hasError) {
+                  print('خطأ: ${snapshot.error}');
+                  return Center(child: Text('خطأ: ${snapshot.error}'));
+                }
+                final products = snapshot.data ?? const <Product>[];
+                if (products.isEmpty) {
+                  return const Center(
+                      child: Text('لا يوجد منتجات رائجة حاليًا'));
+                }
 
-            return GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.85,
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 12,
-              ),
-              itemCount: products.length,
-              itemBuilder: (context, index) {
-                final p = products[index];
-                final hasUrl = p.imageUrl != null && p.imageUrl!.isNotEmpty;
-                final prodInfo = ProdInfo(
-                  prodId: p.id.hashCode,
-                  image: hasUrl
-                      ? Image.network(
-                          p.imageUrl!,
-                          fit: BoxFit.cover,
-                          errorBuilder: (_, __, ___) => Image.asset('asset/image/main_image.jpg', fit: BoxFit.cover),
-                        )
-                      : Image.asset('asset/image/main_image.jpg', fit: BoxFit.cover),
-                  nameProd: p.name,
-                  description: p.description ?? '',
-                  price: '${p.price} \$',
+                return GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    // childAspectRatio: 0.85,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                  ),
+                  itemCount: products.length,
+                  itemBuilder: (context, index) {
+                    final p = products[index];
+                    final hasUrl = p.imageUrl != null && p.imageUrl!.isNotEmpty;
+                    final prodInfo = ProdInfo(
+                      prodId: p.id.hashCode,
+                      image: hasUrl
+                          ? Image.network(
+                              p.imageUrl!,
+                              fit: BoxFit.cover,
+                              errorBuilder: (_, __, ___) => Image.asset(
+                                  'asset/image/main_image.jpg',
+                                  fit: BoxFit.cover),
+                            )
+                          : Image.asset('asset/image/main_image.jpg',
+                              fit: BoxFit.cover),
+                      nameProd: p.name,
+                      description: p.description ?? '',
+                      price: '${p.price} \$',
+                    );
+
+                    return StackButtonWidget(prodInfo: prodInfo);
+                  },
                 );
-
-                                        return StackButtonWidget(prodInfo: prodInfo);
               },
-            );
-          },
+            ),
+          ),
         ),
-      ),
       ),
     );
   }
 }
-
-

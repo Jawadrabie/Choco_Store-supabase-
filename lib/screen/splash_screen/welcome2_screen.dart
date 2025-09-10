@@ -15,23 +15,9 @@ class CookiesIntroScreen extends StatelessWidget {
           Positioned.fill(
 
             child: Image.asset(
-              'asset/image/welcome_screen.png',
+              'asset/image/splash.png',
               fit: BoxFit.cover,
               height: 850,
-            ),
-          ),
-          // Cookies image at top center
-          Positioned(
-            top: 145,
-            left: 0,
-            right: 0,
-            child: Center(
-              child: Image.asset(
-                'asset/image/cookies.png', // Replace with your cookies asset path
-                width: 220,
-                height: 220,
-                fit: BoxFit.contain,
-              ),
             ),
           ),
           // Skip button at the top right
@@ -44,12 +30,12 @@ class CookiesIntroScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (BuildContext context) {
-                        return  ChocolateIntroScreen();
+                        return  SignInPage();
                       }),
                 );
               },
               child: Text(
-                'Skip',
+                'تخطي',
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -81,9 +67,9 @@ class CookiesIntroScreen extends StatelessWidget {
           Positioned(
             left: 32,
             right: 32,
-            top: 510, // adjust this value up/down as you like
+            top: 600, // adjust this value up/down as you like
             child: Text(
-              '"Welcome to ChocoDelight! Indulge in the Sweetest Experience."',
+              'نسافر معًا إلى عالم من النكهات اللذيذة، حيث تلتقي بسحر الشوكولا الفريدة والفاخرة التي تأخذك في رحلة لا تُنسى من المتعة والسرور',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,
@@ -107,7 +93,7 @@ class CookiesIntroScreen extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.brown[800],
+                  backgroundColor:Color(0xFF230B02) ,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18),
                   ),
@@ -123,7 +109,7 @@ class CookiesIntroScreen extends StatelessWidget {
                   );
                 },
                 child: const Text(
-                  'Next',
+                  'الـتـالـي',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,

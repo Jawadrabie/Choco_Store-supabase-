@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../shared_widget/custom_main_container.dart';
 import '../home_page_screen/home_page.dart';
-import '../home_page_screen/home_page_model/prod_class.dart';
 import 'custom_text_form_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../cubits/auth/auth_cubit.dart';
@@ -72,21 +71,25 @@ class _SignInPageState extends State<SignInPage> {
                   children: [
                     Row(
                       children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            CupertinoIcons.arrow_left_circle,
-                            color: Color(0xFF160704),
-                          ),
-                        ),
-                        Center(
-                          widthFactor: 5,
-                          child: Text(
-                            isSignIn ? 'تسجيل دخول' : 'إنشاء حساب',
-                            style: const TextStyle(
-                              color: Color(0xFF160704),
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
+                        // IconButton(
+                        //   onPressed: () {},
+                        //   icon: const Icon(
+                        //     CupertinoIcons.arrow_left_circle,
+                        //     color: Color(0xFF160704),
+                        //   ),
+                        // ),
+                        Padding(
+                          padding: const EdgeInsets.all(6.0),
+                          child: Center(
+                            widthFactor: 5.5,
+                            child: Text(
+                              isSignIn ? 'تسجيل دخول' : 'إنشاء حساب',
+                              textDirection: TextDirection.rtl,
+                              style: const TextStyle(
+                                color: Color(0xFF160704),
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
@@ -96,14 +99,29 @@ class _SignInPageState extends State<SignInPage> {
                       padding: const EdgeInsets.only(top: 30),
                       width: 350,
                       child: const Center(
-                        child: Text(
-                          "شوكولا مزاج",
-                          style: TextStyle(
+                        child: Column(
+                          children: [
+                            Center(
+                              child: Text(
+                                " شـوكـولا مـزاج",
+                                style: TextStyle(
                               fontFamily: 'YesevaOne',
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF160704),
-                              letterSpacing: 4),
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF160704),
+                                    letterSpacing: 0),
+                              ),
+                            ),
+                            Text(
+                              "mazag chocolate",
+                              style: TextStyle(
+                                  fontFamily: 'YesevaOne',
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF160704),
+                                  letterSpacing: 0),
+                            ),
+                          ],
                         ),
                       ),
                     ),

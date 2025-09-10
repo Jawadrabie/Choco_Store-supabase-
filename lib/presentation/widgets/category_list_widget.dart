@@ -15,7 +15,7 @@ class CategoryListWidget extends StatelessWidget {
     return BlocBuilder<CategoryCubit, CategoryState>(
       builder: (context, state) {
         if (state.isLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator( color: Color(0xFFBD9872)));
         }
         if (state.error != null) {
           return Center(child: Text('خطأ: ${state.error}'));

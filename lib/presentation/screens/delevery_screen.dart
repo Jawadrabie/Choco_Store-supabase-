@@ -38,140 +38,142 @@ class _DeliveryInfoScreenState extends State<DeliveryInfoScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(18.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            DeliverySection(),
-            SizedBox(height: 14),
-
-            InfoTile(
-              icon: Icons.local_shipping,
-              label: "حالة الطلب",
-              value: status,
-            ),
-            SizedBox(height: 14),
-
-            InfoTile(
-              icon: Icons.calendar_today,
-              label: "تاريخ الطلب",
-              value: orderDate,
-            ),
-            SizedBox(height: 14),
-
-            // Customer Address
-            Column(
-              children: [
-                InfoTile(
-                  icon: Icons.location_on,
-                  label: "عنوان الزبون",
-                  value: customerAddress,
-                  editable: true,
-                  onEdit: () {
-                    setState(() {
-                      isEditingAddress = !isEditingAddress;
-                      _addressController.text = customerAddress;
-                    });
-                  },
-                ),
-                if (isEditingAddress) ...[
-                  SizedBox(height: 10),
-                  Container(
-                    padding: EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: Color(0xFF6C4A33),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      children: [
-                        TextField(
-                          controller: _addressController,
-                          maxLines: 4,
-                          style: TextStyle(color: Colors.white),
-                          decoration: InputDecoration(
-                            hintText: "أدخل العنوان الجديد",
-                            hintStyle: TextStyle(color: Colors.white54),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide: BorderSide(color: Colors.white),
-                            ),
-                            focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Colors.brown), // لون وقت التركيز
-                            ),
-                            enabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Colors.grey), // لون وقت العادي
-                            ),
-                          ),
-                          cursorColor: Colors.brown,
-                        ),
-                        SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Color(0xFFD18656),
-                                ),
-                                onPressed: () {
-                                  setState(() {
-                                    customerAddress = _addressController.text;
-                                    isEditingAddress = false;
-                                  });
-                                },
-                                child: Text("حفظ", style: TextStyle(color: Colors.white),),
-                              ),
-                            ),
-                            SizedBox(width: 10),
-                            Expanded(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.grey,
-                                ),
-                                onPressed: () {
-                                  setState(() {
-                                    isEditingAddress = false;
-                                  });
-                                },
-                                child: Text("إلغاء",style: TextStyle(color: Colors.white),),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              DeliverySection(),
+              SizedBox(height: 14),
+          
+              InfoTile(
+                icon: Icons.local_shipping,
+                label: "حالة الطلب",
+                value: status,
+              ),
+              SizedBox(height: 14),
+          
+              InfoTile(
+                icon: Icons.calendar_today,
+                label: "تاريخ الطلب",
+                value: orderDate,
+              ),
+              SizedBox(height: 14),
+          
+              // Customer Address
+              Column(
+                children: [
+                  InfoTile(
+                    icon: Icons.location_on,
+                    label: "عنوان الزبون",
+                    value: customerAddress,
+                    editable: true,
+                    onEdit: () {
+                      setState(() {
+                        isEditingAddress = !isEditingAddress;
+                        _addressController.text = customerAddress;
+                      });
+                    },
                   ),
-                ]
-              ],
+                  if (isEditingAddress) ...[
+                    SizedBox(height: 10),
+                    Container(
+                      padding: EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Color(0xFF6C4A33),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        children: [
+                          TextField(
+                            controller: _addressController,
+                            maxLines: 4,
+                            style: TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                              hintText: "أدخل العنوان الجديد",
+                              hintStyle: TextStyle(color: Colors.white54),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.brown), // لون وقت التركيز
+                              ),
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.grey), // لون وقت العادي
+                              ),
+                            ),
+                            cursorColor: Colors.brown,
+                          ),
+                          SizedBox(height: 10),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Color(0xFFD18656),
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      customerAddress = _addressController.text;
+                                      isEditingAddress = false;
+                                    });
+                                  },
+                                  child: Text("حفظ", style: TextStyle(color: Colors.white),),
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Expanded(
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.grey,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      isEditingAddress = false;
+                                    });
+                                  },
+                                  child: Text("إلغاء",style: TextStyle(color: Colors.white),),
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ]
+                ],
+              ),
+              SizedBox(height: 14),
+          
+              PromoCodeTile(),
+              SizedBox(height: 20,),
+              DeleveeryInfo(),
+              SizedBox(height: 20,),
+          ElevatedButton(
+            onPressed: () {
+              // الإجراء المطلوب عند الضغط
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFFD18656), // لون بني فاتح
+              padding: const EdgeInsets.symmetric(vertical: 16), // سماكة متناسقة
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8), // الحواف دائرية
+              ),
+              elevation: 0,
             ),
-            SizedBox(height: 14),
-
-            PromoCodeTile(),
-            SizedBox(height: 20,),
-            DeleveeryInfo(),
-            SizedBox(height: 20,),
-        ElevatedButton(
-          onPressed: () {
-            // الإجراء المطلوب عند الضغط
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFFD18656), // لون بني فاتح
-            padding: const EdgeInsets.symmetric(vertical: 16), // سماكة متناسقة
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8), // الحواف دائرية
+            child: const Text(
+              "تأكيد الطلب",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
             ),
-            elevation: 0,
           ),
-          child: const Text(
-            "تأكيد الطلب",
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-            ),
+          ],
           ),
-        ),
-        ],
         ),
       ),
     );

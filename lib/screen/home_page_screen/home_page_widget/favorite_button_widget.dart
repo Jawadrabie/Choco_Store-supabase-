@@ -9,7 +9,7 @@ class FavoriteButton extends StatelessWidget {
   const FavoriteButton({
     super.key,
     required this.productId,
-    this.size = 20,
+    this.size = 24, // نفس حجم أيقونة السلة تقريباً
   });
 
   @override
@@ -19,10 +19,8 @@ class FavoriteButton extends StatelessWidget {
         final isFavorite = favoriteIds.contains(productId);
         return GestureDetector(
           onTap: () {
-            // تحديث فوري بدون انتظار
             context.read<FavoritesCubit>().toggleFavorite(productId);
-            
-            // إظهار رسالة تأكيد بدون إعادة بناء
+
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -37,24 +35,21 @@ class FavoriteButton extends StatelessWidget {
           },
           child: AnimatedContainer(
             duration: Duration(milliseconds: 200),
-            padding: EdgeInsets.all(4),
+            padding: EdgeInsets.all(10), // نفس حشوة زر السلة
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: isFavorite
+                  ? const Color(0xFFB69E99) // بيج مثل زر السلة وقت يتفعل
+                  : const Color(0xFF160704), // بني غامق مثل زر السلة
               shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 4,
-                  offset: Offset(0, 2),
-                ),
-              ],
             ),
             child: AnimatedSwitcher(
               duration: Duration(milliseconds: 200),
               child: Icon(
                 isFavorite ? Icons.favorite : Icons.favorite_border,
                 key: ValueKey(isFavorite),
-                color: isFavorite ? Colors.red : Colors.grey[600],
+                color: isFavorite
+                    ? const Color(0xFF800020) // Burgundy (أحمر غامق)
+                    : const Color(0xFFB69E99), // نفس لون الأيقونة بالسلة
                 size: size,
               ),
             ),

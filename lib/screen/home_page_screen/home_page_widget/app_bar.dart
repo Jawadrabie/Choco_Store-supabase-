@@ -31,10 +31,6 @@ class _AppBarProfileState extends State<AppBarProfile> {
         padding: const EdgeInsets.only(top: 8.0),
         child: Row(
           children: [
-            // const CircleAvatar(
-            //   backgroundColor: Colors.white,
-            //   radius: 25,
-            // ),
             IconButton(
               onPressed: () {
                 Navigator.push(
@@ -42,8 +38,8 @@ class _AppBarProfileState extends State<AppBarProfile> {
                   MaterialPageRoute(builder: (_) => const ProfilePage()),
                 );
               },
-              icon: const Icon(Icons.person),
-              iconSize: 27,
+              icon:  Icon(Icons.person),
+              iconSize: 27, color: Colors.white,
             ),
             Padding(padding: EdgeInsets.only(right: 12)),
             Column(
@@ -54,17 +50,10 @@ class _AppBarProfileState extends State<AppBarProfile> {
                   '☀️ !نهارك سعيد',
                   style: TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF160704),
+                    color: Colors.white,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                // Text(
-                //   '${widget.userName}',
-                //   style: const TextStyle(
-                //     fontSize: 16,
-                //     color: Color(0xFF160704),
-                //   ),
-                // ),
               ],
             ),
             const Spacer(),
